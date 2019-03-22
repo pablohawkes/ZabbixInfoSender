@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ZabbixInfoSenderConfiguration>
+
+  <TemperatureSources ExecutionTimeSeconds="60"
+                      CPUEnabled = "true"
+                      GPUEnabled = "true"
+                      RAMEnabled = "false"
+                      FanControllerEnabled = "false"
+                      HDDEnabled = "false"
+                      MainboardEnabled = "false"
+                      NICEnabled = "false" >
+    <TemperatureSource Name="CPU Core #1 Temperature"
+                       HardwareSensorIdentifier="/intelcpu/0/temperature/0"
+                       ZabbixItem="Temperature.Cpu1"
+                       MinLimit="1"
+                       MaxLimit="120"
+                       MinValueChangeToInformZabbix="0"
+                       SendIfEqualToPreviousValue="false"
+                       Inactive="false" />
+    <TemperatureSource Name="CPU Core #2 Temperature"
+                       HardwareSensorIdentifier="/intelcpu/0/temperature/1"
+                       ZabbixItem="Temperature.Cpu2"
+                       MinLimit="1"
+                       MaxLimit="120"
+                       MinValueChangeToInformZabbix="0"
+                       SendIfEqualToPreviousValue="true"
+                       Inactive="false" />
+    <TemperatureSource Name="CPU Package Temperature"
+                       HardwareSensorIdentifier="/intelcpu/0/temperature/2"
+                       ZabbixItem="Temperature.CpuPackage"
+                       MinLimit="1"
+                       MaxLimit="120"
+                       MinValueChangeToInformZabbix="0"
+                       SendIfEqualToPreviousValue="false"
+                       Inactive="false" />
+  </TemperatureSources> 
+</ZabbixInfoSenderConfiguration>
