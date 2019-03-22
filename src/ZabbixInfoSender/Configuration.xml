@@ -6,7 +6,7 @@
                       GPUEnabled = "true"
                       RAMEnabled = "false"
                       FanControllerEnabled = "false"
-                      HDDEnabled = "false"
+                      HDDEnabled = "true"
                       MainboardEnabled = "false"
                       NICEnabled = "false" >
     <TemperatureSource Name="CPU Core #1 Temperature"
@@ -28,6 +28,14 @@
     <TemperatureSource Name="CPU Package Temperature"
                        HardwareSensorIdentifier="/intelcpu/0/temperature/2"
                        ZabbixItem="Temperature.CpuPackage"
+                       MinLimit="1"
+                       MaxLimit="120"
+                       MinValueChangeToInformZabbix="0"
+                       SendIfEqualToPreviousValue="false"
+                       Inactive="false" />
+    <TemperatureSource Name="HDD Temperature"
+                       HardwareSensorIdentifier="/hdd/0/temperature/0"
+                       ZabbixItem="Temperature.HDD"
                        MinLimit="1"
                        MaxLimit="120"
                        MinValueChangeToInformZabbix="0"

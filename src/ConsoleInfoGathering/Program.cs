@@ -28,9 +28,15 @@ namespace ConsoleInfoGathering
 
         static void GetSystemInfo()
         {
-            const int C_H_N_LENGTH = 25;                //ComputerHardwareName
-            const int C_H_S_N_LENGTH = 20;              //ComputerHardwareSensorName
-            const int C_H_S_T_N_LENGTH = 8;             //ComputerHardwareSensorTypeName
+            const int C_H_N_LENGTH = 20;                                //ComputerHardwareName
+            const int C_H_S_N_LENGTH = 30;                              //ComputerHardwareSensorName
+            const int C_H_S_T_N_LENGTH = 12;                            //ComputerHardwareSensorTypeName
+            const int V_LENGTH = 8;                                     //Value
+
+            const string C_H_N_NAME = "Hardware Identifier";            //ComputerHardwareName
+            const string C_H_S_N_NAME = "Hardware Sensor Identifier";   //ComputerHardwareSensorName
+            const string C_H_S_T_N_NAME = "Sensor Type";                //ComputerHardwareSensorTypeName
+            const string V_NAME = "Value";                              //Value
 
             UpdateVisitor updateVisitor = new UpdateVisitor();
             Computer computer = new Computer();
@@ -39,12 +45,20 @@ namespace ConsoleInfoGathering
             computer.CPUEnabled = true;
             computer.GPUEnabled = true;
             computer.RAMEnabled = true;
-            computer.FanControllerEnabled = true;
+            //computer.FanControllerEnabled = true;                 //Gets a weird exception: "Error: No se puede cargar el archivo o ensamblado 'HidLibrary, Version=3.2.46.0, Culture=neutral, PublicKeyToken=null' ni una de sus dependencias. El sistema no puede encontrar el archivo especificado."
             computer.HDDEnabled = true;
             computer.MainboardEnabled = true;
-            computer.NICEnabled = true;
+            //computer.NICEnabled = true;                           //Shows Too much info from NIC that is not useful for me
 
             computer.Accept(updateVisitor);
+
+            Console.WriteLine((C_H_N_NAME.Length > C_H_N_LENGTH ? C_H_N_NAME.Substring(0, C_H_N_LENGTH): C_H_N_NAME.PadRight(C_H_N_LENGTH)) + " | " +
+                              (C_H_S_N_NAME.Length > C_H_S_N_LENGTH ? C_H_S_N_NAME.Substring(0, C_H_S_N_LENGTH) : C_H_S_N_NAME.PadRight(C_H_S_N_LENGTH)) + " | " + 
+                              (C_H_S_T_N_NAME.Length > C_H_S_T_N_LENGTH ? C_H_S_T_N_NAME.Substring(0, C_H_S_T_N_LENGTH) : C_H_S_T_N_NAME.PadRight(C_H_S_T_N_LENGTH)).PadRight(C_H_S_T_N_LENGTH) + " | " +
+                              (V_NAME.Length > V_LENGTH ? V_NAME.Substring(0, V_LENGTH) : V_NAME.PadLeft(V_LENGTH)));
+            Console.WriteLine(("-").PadLeft(C_H_N_LENGTH + C_H_S_N_LENGTH + C_H_S_T_N_LENGTH + V_LENGTH + 9, '-'));
+
+
             for (int i = 0; i < computer.Hardware.Length; i++)
             {
                 for (int j = 0; j < computer.Hardware[i].Sensors.Length; j++)
@@ -86,12 +100,14 @@ namespace ConsoleInfoGathering
                         }
 
                         var value = Math.Round((decimal)computer.Hardware[i].Sensors[j].Value, 1).ToString();
+                        /*
                         value = value.Replace(",", ".");
                         if (!(value.Contains(".")))
                         {
                             value = (value + ".0").ToString();
                         }
-                        value = value.PadLeft(10);
+                        value = value.PadLeft(V_LENGTH);
+                        */
 
                         Console.WriteLine(ComputerHardwareName + " | " + ComputerHardwareSensorName + " | " + ComputerHardwareSensorTypeName + " | " + value + "\r");
                     }
@@ -104,8 +120,13 @@ namespace ConsoleInfoGathering
         {
             try
             {
+                Console.WriteLine(Environment.NewLine + "Getting info from OpenHardwareMonitorLib.dll (Sensor Type = \"Temperature\"):" + Environment.NewLine);
+
                 GetSystemInfo();
 
+                Console.WriteLine(Environment.NewLine + "Finished OK.");
+                //Console.WriteLine(Environment.NewLine + "Press any key to End...");
+                //Console.ReadKey();
                 return 0;
             }
 
