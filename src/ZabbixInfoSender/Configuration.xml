@@ -1,6 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ZabbixInfoSenderConfiguration>
-
   <TemperatureSources ExecutionTimeSeconds="60"
                       CPUEnabled = "true"
                       GPUEnabled = "true"
@@ -15,7 +14,7 @@
                        MinLimit="1"
                        MaxLimit="120"
                        MinValueChangeToInformZabbix="0"
-                       SendIfEqualToPreviousValue="false"
+                       SendEvenIfEqualToPreviousValue="true"
                        Inactive="false" />
     <TemperatureSource Name="CPU Core #2 Temperature"
                        HardwareSensorIdentifier="/intelcpu/0/temperature/1"
@@ -23,7 +22,7 @@
                        MinLimit="1"
                        MaxLimit="120"
                        MinValueChangeToInformZabbix="0"
-                       SendIfEqualToPreviousValue="true"
+                       SendEvenIfEqualToPreviousValue="true"
                        Inactive="false" />
     <TemperatureSource Name="CPU Package Temperature"
                        HardwareSensorIdentifier="/intelcpu/0/temperature/2"
@@ -31,7 +30,7 @@
                        MinLimit="1"
                        MaxLimit="120"
                        MinValueChangeToInformZabbix="0"
-                       SendIfEqualToPreviousValue="false"
+                       SendEvenIfEqualToPreviousValue="true"
                        Inactive="false" />
     <TemperatureSource Name="HDD Temperature"
                        HardwareSensorIdentifier="/hdd/0/temperature/0"
@@ -39,7 +38,7 @@
                        MinLimit="1"
                        MaxLimit="120"
                        MinValueChangeToInformZabbix="0"
-                       SendIfEqualToPreviousValue="false"
+                       SendEvenIfEqualToPreviousValue="true"
                        Inactive="false" />
   </TemperatureSources> 
 </ZabbixInfoSenderConfiguration>

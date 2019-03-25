@@ -31,7 +31,7 @@ namespace ConsoleInfoGathering
             const int C_H_N_LENGTH = 20;                                //ComputerHardwareName
             const int C_H_S_N_LENGTH = 30;                              //ComputerHardwareSensorName
             const int C_H_S_T_N_LENGTH = 12;                            //ComputerHardwareSensorTypeName
-            const int V_LENGTH = 8;                                     //Value
+            const int V_LENGTH = 6;                                     //Value
 
             const string C_H_N_NAME = "Hardware Identifier";            //ComputerHardwareName
             const string C_H_S_N_NAME = "Hardware Sensor Identifier";   //ComputerHardwareSensorName
@@ -106,8 +106,8 @@ namespace ConsoleInfoGathering
                         {
                             value = (value + ".0").ToString();
                         }
-                        value = value.PadLeft(V_LENGTH);
                         */
+                        value = value.PadLeft(V_LENGTH);
 
                         Console.WriteLine(ComputerHardwareName + " | " + ComputerHardwareSensorName + " | " + ComputerHardwareSensorTypeName + " | " + value + "\r");
                     }

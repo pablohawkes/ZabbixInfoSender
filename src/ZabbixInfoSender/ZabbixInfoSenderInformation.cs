@@ -304,9 +304,14 @@ namespace ZabbixInfoSender
                                          " -  Value: " + temperatureValue + "° - Max Limit: " + temp.MaxLimit + "°");
                                 continue;
                             }
-
-                            if (temp.LastTemperatureValue != temperatureValue || temp.SendEvenIfEqualToPreviousValue)
+                            
+                            if (!temp.SendEvenIfEqualToPreviousValue) //Fix #1
                             {
+                                if (temp.LastTemperatureValue == temperatureValue)
+                                {
+                                    log.Info("Temperature equal to Previous - NOT SENT - Name: " + temp.Name + " - Sensor: " + temp.HardwareSensorIdentifier + " -  Value: " + temperatureValue.ToString() + "°");
+                                    continue;
+                                }
 
                                 if ((Math.Abs(temp.LastTemperatureValue - temperatureValue)) <= temp.MinValueChangeToInformZabbix)
                                 {
@@ -314,17 +319,15 @@ namespace ZabbixInfoSender
                                              " -  Current Value: " + temperatureValue + "° - Last Value: " + temp.LastTemperatureValue + "°");
                                     continue;
                                 }
-
-                                temp.LastTemperatureValue = temperatureValue;
-
-                                zabbixMessages.Add(new ZabbixMessage(ZabbixClientHostName, temp.ZabbixItem, temperatureValue));
-
-                                log.Info("Temperature Gathered: NAME: " + temp.Name + " - Sensor: " + temp.HardwareSensorIdentifier + " -  Value: " + temperatureValue.ToString() + "°");
                             }
-                            else
-                            {
-                                log.Debug("Temperature equal to Previous - NOT SENT: NAME: " + temp.Name + " - Sensor: " + temp.HardwareSensorIdentifier + " -  Value: " + temperatureValue.ToString() + "°");
-                            }
+
+                            //Everything is OK: Send Data
+                            temp.LastTemperatureValue = temperatureValue;
+
+                            zabbixMessages.Add(new ZabbixMessage(ZabbixClientHostName, temp.ZabbixItem, temperatureValue));
+
+                            log.Info("Temperature Gathered: NAME: " + temp.Name + " - Sensor: " + temp.HardwareSensorIdentifier + " -  Value: " + temperatureValue.ToString() + "°");
+
                         }
                     }
 
