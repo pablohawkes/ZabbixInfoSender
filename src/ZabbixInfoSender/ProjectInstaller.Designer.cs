@@ -38,9 +38,10 @@
             // 
             // serviceInstaller
             // 
-            this.serviceInstaller.Description = "Generic Zabbix Sender for FCA";
+            this.serviceInstaller.Description = "Generic Zabbix Sender that gets information from OpenHardwareMonitor library and " +
+    "sends to Zabbix";
             this.serviceInstaller.DisplayName = "ZabbixInfoSender";
-            this.serviceInstaller.ServiceName = "ZabbixInfoSenderService";
+            this.serviceInstaller.ServiceName = "ZabbixInfoSender";
             this.serviceInstaller.StartType = System.ServiceProcess.ServiceStartMode.Automatic;
             // 
             // ProjectInstaller

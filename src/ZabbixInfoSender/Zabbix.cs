@@ -16,12 +16,5 @@
             Key = key.Trim();
             Value = value.ToString();
         }
-
-        public ZabbixMessage(string host, string key, string value)
-        {
-            Host = host.Trim();
-            Key = key.Trim();
-            Value = value.Trim();
-        }
     }
 }
