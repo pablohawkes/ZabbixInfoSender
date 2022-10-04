@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.102
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32328.378
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZabbixInfoSender", "ZabbixInfoSender\ZabbixInfoSender.csproj", "{35F5B10B-FD0E-4971-9999-7A244C66E750}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleInfoGathering", "ConsoleInfoGathering\ConsoleInfoGathering.csproj", "{7B1E0ADD-62AA-4100-9B99-A30B4309C853}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GetTemperatureToJson", "GetTemperatureToJson\GetTemperatureToJson.csproj", "{7B1E0ADD-62AA-4100-9B99-A30B4309C853}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
